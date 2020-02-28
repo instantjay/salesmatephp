@@ -2,7 +2,8 @@
 
 namespace instantjay\salesmatephp\Entity;
 
-class Contact extends SalesmateEntity {
+class Contact extends SalesmateEntity
+{
     public function __construct($data = [])
     {
         $this->availableProperties = [
@@ -24,83 +25,163 @@ class Contact extends SalesmateEntity {
         parent::__construct($data);
     }
 
-    public function setName($name) {
+    /**
+     * @param string $name
+     */
+    public function setName($name)
+    {
         $this->data['name'] = $name;
     }
 
-    public function getName() {
+    /**
+     * @return string
+     */
+    public function getName()
+    {
         return $this->data['name'];
     }
 
-    public function getOwner() {
+    /**
+     * @return string
+     */
+    public function getOwner()
+    {
         return $this->data['owner'];
     }
 
-    public function setOwner($ownerId) {
+    /**
+     * @param string $ownerId
+     */
+    public function setOwner($ownerId)
+    {
         $this->data['owner'] = $ownerId;
     }
 
-    public function setEmail($emailAddress) {
+    /**
+     * @param string $emailAddress
+     */
+    public function setEmail($emailAddress)
+    {
         $this->data['email'] = $emailAddress;
     }
 
-    public function getEmail() {
+    /**
+     * @return string
+     */
+    public function getEmail()
+    {
         return $this->data['email'];
     }
 
-    public function getCompany() {
+    /**
+     * @return string
+     */
+    public function getCompany()
+    {
         return $this->data['company'];
     }
 
-    public function setCompany($companyId) {
+    /**
+     * @param string $companyId
+     */
+    public function setCompany($companyId)
+    {
         $this->data['company'] = $companyId;
     }
 
-    public function getPhone() {
+    /**
+     * @return string
+     */
+    public function getPhone()
+    {
         return $this->data['phone'];
     }
 
-    public function setPhone($phoneNumber) {
+    /**
+     * @param string $phoneNumber
+     */
+    public function setPhone($phoneNumber)
+    {
         $this->data['phone'] = $phoneNumber;
     }
 
-    public function getOtherPhone() {
+    /**
+     * @return string
+     */
+    public function getOtherPhone()
+    {
         return $this->data['otherPhone'];
     }
 
-    public function setOtherPhone($phoneNumber) {
+    /**
+     * @param string $phoneNumber
+     */
+    public function setOtherPhone($phoneNumber)
+    {
         $this->data['otherPhone'] = $phoneNumber;
     }
 
-    public function getMobile() {
+    /**
+     * @return string
+     */
+    public function getMobile()
+    {
         return $this->data['mobile'];
     }
 
-    public function setMobile($phoneNumber) {
+    /**
+     * @param string $phoneNumber
+     */
+    public function setMobile($phoneNumber)
+    {
         $this->data['mobile'] = $phoneNumber;
     }
 
-    public function getDescription() {
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
         return $this->data['mobile'];
     }
 
-    public function setDescription($description) {
+    /**
+     * @param string $description
+     */
+    public function setDescription($description)
+    {
         $this->data['description'] = $description;
     }
 
-    public function getSkypeId() {
+    /**
+     * @return string
+     */
+    public function getSkypeId()
+    {
         return $this->data['skypeId'];
     }
 
-    public function setSkypeId($skypeId) {
+    /**
+     * @param $skypeId
+     */
+    public function setSkypeId($skypeId)
+    {
         $this->data['skypeId'] = $skypeId;
     }
 
-    public function getWebsite() {
+    /**
+     * @return string
+     */
+    public function getWebsite()
+    {
         return $this->data['website'];
     }
 
-    public function setWebsite($website) {
+    /**
+     * @param $website
+     */
+    public function setWebsite($website)
+    {
         $this->data['website'] = $website;
     }
 }

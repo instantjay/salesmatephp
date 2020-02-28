@@ -2,7 +2,8 @@
 
 namespace instantjay\salesmatephp;
 
-class SalesmateError {
+class SalesmateError
+{
     private $code;
     private $name;
     private $message;
@@ -14,15 +15,18 @@ class SalesmateError {
         $this->message = $message;
     }
 
-    public function getCode() {
+    public function getCode()
+    {
         return $this->code;
     }
 
-    public function getName() {
+    public function getName()
+    {
         return $this->name;
     }
 
-    public function getMessage() {
+    public function getMessage()
+    {
         return $this->message;
     }
 }

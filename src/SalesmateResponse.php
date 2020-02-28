@@ -4,8 +4,10 @@ namespace instantjay\salesmatephp;
 
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp;
+use Psr\Http\Message\ResponseInterface;
 
-class SalesmateResponse {
+class SalesmateResponse
+{
     /** @var Response */
     private $response;
 
@@ -16,9 +18,9 @@ class SalesmateResponse {
 
     /**
      * SalesmateResponse constructor.
-     * @param Response $response
+     * @param ResponseInterface $response
      */
-    public function __construct(Response $response)
+    public function __construct(ResponseInterface $response)
     {
         $this->response = $response;
 
@@ -27,23 +29,32 @@ class SalesmateResponse {
         $this->httpCode = $this->response->getStatusCode();
         $this->status = $r['Status'];
 
-        if(!empty($r['Error'])) {
+        if (!empty($r['Error'])) {
             $error = new SalesmateError($r['Error']['Code'], $r['Error']['Name'], $r['Error']['Message']);
             $this->error = $error;
         }
 
-        if(!empty($r['Data'])) {
+        if (!empty($r['Data'])) {
             $this->data = $r['Data'];
         }
     }
 
-    public function getHttpCode() {
+    /**
+     * @return int
+     */
+    public function getHttpCode()
+    {
         return $this->httpCode;
     }
 
-    public function isSuccessful() {
-        if($this->status == 'success')
+    /**
+     * @return bool
+     */
+    public function isSuccessful()
+    {
+        if ($this->status === 'success') {
             return true;
+        }
 
         return false;
     }
@@ -51,14 +62,16 @@ class SalesmateResponse {
     /**
      * @returns SalesmateError
      */
-    public function getError() {
+    public function getError()
+    {
         return $this->error;
     }
 
     /**
      * @return string[]
      */
-    public function getData() {
+    public function getData()
+    {
         return $this->data;
     }
 }

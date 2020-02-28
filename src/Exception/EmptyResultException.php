@@ -2,6 +2,7 @@
 
 namespace instantjay\salesmatephp\Exception;
 
-class EmptyResultException extends \Exception {
+class EmptyResultException extends \Exception
+{
 
 }

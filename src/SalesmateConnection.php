@@ -6,7 +6,8 @@ use GuzzleHttp\Client;
 use instantjay\salesmatephp\exception\InvalidFormatException;
 use Respect\Validation\Validator;
 
-class SalesmateConnection {
+class SalesmateConnection
+{
     private $url;
 
     private $privateKey;
@@ -21,18 +22,23 @@ class SalesmateConnection {
      * @param $accessKey
      * @throws InvalidFormatException Thrown if any of the four required inputs appear to be invalid.
      */
-    public function __construct($url, $privateKey, $sessionToken, $accessKey) {
-        if(!Validator::url()->validate($url))
+    public function __construct($url, $privateKey, $sessionToken, $accessKey)
+    {
+        if (!Validator::url()->validate($url)) {
             throw new InvalidFormatException('Provided URL is not a valid URL.');
+        }
 
-        if(!Validator::alnum('-')->validate($privateKey))
+        if (!Validator::alnum('-')->validate($privateKey)) {
             throw new InvalidFormatException('Misshaped private key.');
+        }
 
-        if(!Validator::alnum('-')->validate($sessionToken))
+        if (!Validator::alnum('-')->validate($sessionToken)) {
             throw new InvalidFormatException('Misshaped session token.');
+        }
 
-        if(!Validator::alnum('-')->validate($accessKey))
+        if (!Validator::alnum('-')->validate($accessKey)) {
             throw new InvalidFormatException('Misshaped access key.');
+        }
 
         $this->url = $url;
         $this->privateKey = $privateKey;
@@ -40,23 +46,28 @@ class SalesmateConnection {
         $this->accessKey = $accessKey;
     }
 
-    public function getUrl() {
+    public function getUrl()
+    {
         return  $this->url;
     }
 
-    public function getPrivatekey() {
+    public function getPrivatekey()
+    {
         return $this->privateKey;
     }
 
-    public function getSessionToken() {
+    public function getSessionToken()
+    {
         return $this->sessionToken;
     }
 
-    public function getAccessKey() {
+    public function getAccessKey()
+    {
         return $this->accessKey;
     }
 
-    public function getHttpClient($timeout = 10) {
+    public function getHttpClient($timeout = 10)
+    {
         $client = new Client([
             'timeout' => $timeout,
             'headers' => $this->getRequestHeaders()
@@ -65,7 +76,8 @@ class SalesmateConnection {
         return $client;
     }
 
-    public function getRequestHeaders() {
+    public function getRequestHeaders()
+    {
         //
         $headers = [
             'AppPrivateKey' => $this->getPrivatekey(),

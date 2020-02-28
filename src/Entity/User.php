@@ -2,7 +2,8 @@
 
 namespace instantjay\salesmatephp\Entity;
 
-class User extends SalesmateEntity {
+class User extends SalesmateEntity
+{
     public function __construct($data)
     {
         $this->path = '/users';
@@ -29,67 +30,131 @@ class User extends SalesmateEntity {
         parent::__construct($data);
     }
 
-    public function getId() {
+    /**
+     * @return string
+     */
+    public function getId()
+    {
         return $this->data['id'];
     }
 
-    public function getFirstName() {
+    /**
+     * @return string
+     */
+    public function getFirstName()
+    {
         return $this->data['firstName'];
     }
 
-    public function getLastName() {
+    /**
+     * @return string
+     */
+    public function getLastName()
+    {
         return $this->data['lastName'];
     }
 
-    public function getEmail() {
+    /**
+     * @return string
+     */
+    public function getEmail()
+    {
         return $this->data['email'];
     }
 
-    public function getAllowedLoginFrom() {
+    /**
+     * @return string
+     */
+    public function getAllowedLoginFrom()
+    {
         return $this->data['allowedLoginFrom'];
     }
 
-    public function getTimezone() {
+    /**
+     * @return string
+     */
+    public function getTimezone()
+    {
         return $this->data['timezone'];
     }
 
-    public function getPhoto() {
+    /**
+     * @return string
+     */
+    public function getPhoto()
+    {
         return $this->data['photo'];
     }
 
-    public function getDateFormat() {
+    /**
+     * @return string
+     */
+    public function getDateFormat()
+    {
         return $this->data['dateFormat'];
     }
 
-    public function getTimeFormat() {
+    /**
+     * @return string
+     */
+    public function getTimeFormat()
+    {
         return $this->data['timeFormat'];
     }
 
-    public function getEmailSignature() {
+    /**
+     * @return string
+     */
+    public function getEmailSignature()
+    {
         return $this->data['emailSignature'];
     }
 
-    public function isActive() {
+    /**
+     * @return string
+     */
+    public function isActive()
+    {
         return $this->data['isActive'];
     }
 
-    public function getInvitationAccepted() {
+    /**
+     * @return string
+     */
+    public function getInvitationAccepted()
+    {
         return $this->data['invitationAccepted'];
     }
 
-    public function getNickname() {
+    /**
+     * @return string
+     */
+    public function getNickname()
+    {
         return $this->data['nickname'];
     }
 
-    public function getRole() {
+    /**
+     * @return string
+     */
+    public function getRole()
+    {
         return $this->data['Role'];
     }
 
-    public function getProfile() {
+    /**
+     * @return string
+     */
+    public function getProfile()
+    {
         return $this->data['Profile'];
     }
 
-    public function getUserAccessTokens() {
+    /**
+     * @return string
+     */
+    public function getUserAccessTokens()
+    {
         return $this->data['UserAccessTokens'];
     }
 }

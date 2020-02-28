@@ -8,7 +8,8 @@ use instantjay\salesmatephp\SalesmateConnection;
 use instantjay\salesmatephp\SalesmateResponse;
 use Respect\Validation\Validator;
 
-abstract class SalesmateEntity {
+abstract class SalesmateEntity
+{
     protected $path;
 
     /**
@@ -26,7 +27,8 @@ abstract class SalesmateEntity {
      */
     private $connection;
 
-    public function __construct($data) {
+    public function __construct($data)
+    {
         $this->data = $data;
     }
 
@@ -34,23 +36,33 @@ abstract class SalesmateEntity {
      * @return SalesmateResponse
      * @throws \Exception Thrown if object could not be mapped to anything saved on Salesmate
      */
-    public function delete() {
-        if(!Validator::numeric()->validate($this->data['id']))
+    public function delete()
+    {
+        if (!Validator::numeric()->validate($this->data['id'])) {
             throw new \Exception('Unknown object; missing id.');
+        }
 
         $response = $this->commit($this->connection, 'DELETE');
 
         return $response;
     }
 
-    protected function getData() {
+    /**
+     * @return string[]
+     */
+    protected function getData()
+    {
         return $this->data;
     }
 
-    protected function getPath() {
+    /**
+     * @return string
+     */
+    protected function getPath()
+    {
         $path = $this->path;
 
-        if(!empty($this->data['id'])) {
+        if (!empty($this->data['id'])) {
             $id = $this->data['id'];
 
             $path .= "/$id";
@@ -59,7 +71,11 @@ abstract class SalesmateEntity {
         return $path;
     }
 
-    public function getId() {
+    /**
+     * @return string
+     */
+    public function getId()
+    {
         return $this->data['id'];
     }
 
@@ -68,12 +84,15 @@ abstract class SalesmateEntity {
      * @return string|\string[]
      * @throws \Exception
      */
-    protected function getProperty($propertyName) {
-        if(!in_array($propertyName, $this->availableProperties))
+    protected function getProperty($propertyName)
+    {
+        if (!in_array($propertyName, $this->availableProperties)) {
             throw new \Exception('Property does not exist.');
+        }
 
-        if(isset($this->data[$propertyName]))
+        if (isset($this->data[$propertyName])) {
             return $this->data[$propertyName];
+        }
 
         return null;
     }
@@ -81,27 +100,36 @@ abstract class SalesmateEntity {
     /**
      * @param $httpMethod string GET, PUT, DELETE etc
      * @param $salesmateConnection SalesmateConnection
-     * @returns SalesmateResponse
+     * @return SalesmateResponse
      */
-    public function commit($salesmateConnection, $httpMethod = null) {
+    public function commit($salesmateConnection, $httpMethod = null)
+    {
         // Guess the HTTP method
-        if($httpMethod == null) {
-            if(!empty($this->data['id']))
+        if ($httpMethod == null) {
+            if (!empty($this->data['id'])) {
                 $httpMethod = 'PUT';
-            else
+            } else {
                 $httpMethod = 'POST';
+            }
         }
 
         $client = new Client();
 
         $payload = \GuzzleHttp\json_encode($this->getData(), JSON_NUMERIC_CHECK);
 
-        $request = new Request($httpMethod, $salesmateConnection->getUrl().$this->getPath(), $salesmateConnection->getRequestHeaders(), $payload);
+        $request = new Request(
+            $httpMethod,
+            $salesmateConnection->getUrl().$this->getPath(),
+            $salesmateConnection->getRequestHeaders(),
+            $payload
+        );
         $response = $client->send($request);
 
         $response = new SalesmateResponse($response);
 
-        if($httpMethod == 'POST') { // We are submitting a new item. Let's update our object with the ID that we get back, so that we can use it right away.
+        if ($httpMethod === 'POST') {
+            // We are submitting a new item. Let's update our object with the ID that we get back,
+            // so that we can use it right away.
             $data = $response->getData();
             $this->data['id'] = $data['id'];
         }

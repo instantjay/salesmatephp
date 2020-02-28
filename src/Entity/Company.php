@@ -2,7 +2,8 @@
 
 namespace instantjay\salesmatephp\Entity;
 
-class Company extends SalesmateEntity {
+class Company extends SalesmateEntity
+{
     public function __construct($data)
     {
         $this->path = '/companies';

@@ -3,8 +3,11 @@
 namespace instantjay\salesmatephp\Entity;
 
 use instantjay\salesmatephp\Exception\InvalidFormatException;
+use instantjay\salesmatephp\SalesmateConnection;
+use instantjay\salesmatephp\SalesmateResponse;
 
-class Deal extends SalesmateEntity {
+class Deal extends SalesmateEntity
+{
     public function __construct($data = [])
     {
         $this->path = '/deals';
@@ -32,11 +35,11 @@ class Deal extends SalesmateEntity {
     }
 
     /**
-     * @param \instantjay\salesmatephp\SalesmateConnection $salesmateConnection
+     * @param SalesmateConnection $salesmateConnection
      * @param string $httpMethod
-     * @return \instantjay\salesmatephp\SalesmateResponse
+     * @return SalesmateResponse
      */
-    public function commit($salesmateConnection, $httpMethod = null)
+    public function commit($salesmateConnection, $httpMethod = null) : SalesmateResponse
     {
         return parent::commit($salesmateConnection, $httpMethod);
     }
@@ -44,109 +47,197 @@ class Deal extends SalesmateEntity {
     /**
      * @param $title string
      */
-    public function setTitle($title) {
+    public function setTitle($title)
+    {
         $this->data['title'] = $title;
     }
 
     /**
      * @param $ownerId int
      */
-    public function setOwner($ownerId) {
+    public function setOwner($ownerId)
+    {
         $this->data['owner'] = $ownerId;
     }
 
-    public function getDescription() {
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
         return $this->data['description'];
     }
 
-    public function setDescription($description) {
+    /**
+     * @param string $description
+     */
+    public function setDescription($description)
+    {
         $this->data['description'] = $description;
     }
 
     /**
      * @param $primaryContactId int
      */
-    public function setPrimaryContact($primaryContactId) {
+    public function setPrimaryContact($primaryContactId)
+    {
         $this->data['primaryContact'] = $primaryContactId;
     }
 
-    public function addFollowerUser($userId) {
+    /**
+     * @param string $userId
+     */
+    public function addFollowerUser($userId)
+    {
         $this->data['followers'][]['userId'] = $userId;
     }
 
-    public function addFollowerContact($contactId) {
+    /**
+     * @param string $contactId
+     */
+    public function addFollowerContact($contactId)
+    {
         $this->data['followers'][]['contactId'] = $contactId;
     }
 
-    public function getId() {
+    /**
+     * @return string
+     */
+    public function getId()
+    {
         return $this->data['id'];
     }
 
-    public function getTitle() {
+    /**
+     * @return string
+     */
+    public function getTitle()
+    {
         return $this->data['title'];
     }
 
-    public function getPrimaryContact() {
+    /**
+     * @return string
+     */
+    public function getPrimaryContact()
+    {
         return $this->data['primaryContact'];
     }
 
-    public function getPrimaryCompany() {
+    /**
+     * @return string
+     */
+    public function getPrimaryCompany()
+    {
         return $this->data['primaryCompany'];
     }
 
-    public function getOwner() {
+    /**
+     * @return string
+     */
+    public function getOwner()
+    {
         return $this->data['owner'];
     }
 
-    public function getEstimatedCloseDate() {
+    /**
+     * @return string
+     */
+    public function getEstimatedCloseDate()
+    {
         return $this->data['estimatedCloseDate'];
     }
 
-    public function setEstimatedCloseDate($closeDate) {
+    /**
+     * @param string $closeDate
+     */
+    public function setEstimatedCloseDate($closeDate)
+    {
         $this->data['estimatedCloseDage'] = $closeDate;
     }
 
-    public function getDealValue() {
+    /**
+     * @return string
+     */
+    public function getDealValue()
+    {
         return $this->data['dealValue'];
     }
 
-    public function setDealValue($value) {
+    /**
+     * @param string $value
+     */
+    public function setDealValue($value)
+    {
         $this->data['dealValue'] = $value;
     }
 
-    public function getCurrency() {
+    /**
+     * @return string
+     */
+    public function getCurrency()
+    {
         return $this->data['currency'];
     }
 
-    public function setCurrency($currencyCode) {
+    /**
+     * @param string $currencyCode
+     */
+    public function setCurrency($currencyCode)
+    {
         $this->data['currency'] = $currencyCode;
     }
 
-    public function getPipeline() {
+    /**
+     * @return string
+     */
+    public function getPipeline()
+    {
         return $this->data['pipeline'];
     }
 
-    public function setPipeline($pipeline) {
+    /**
+     * @param string $pipeline
+     */
+    public function setPipeline($pipeline)
+    {
         $this->data['pipeline'] = $pipeline;
     }
 
-    public function getStage() {
+    /**
+     * @return string
+     */
+    public function getStage()
+    {
         return $this->data['stage'];
     }
 
-    public function setStage($stage) {
+    /**
+     * @param $stage
+     */
+    public function setStage($stage)
+    {
         $this->data['stage'] = $stage;
     }
 
-    public function getSource() {
+    public function getSource()
+    {
         return $this->data['source'];
     }
 
-    public function getPriority() {
+    /**
+     * @return string
+     */
+    public function getPriority()
+    {
         return $this->data['priority'];
     }
 
-    public function getStatus() {
+    /**
+     * @return string
+     */
+    public function getStatus()
+    {
         return $this->data['status'];
     }
 
@@ -154,18 +245,28 @@ class Deal extends SalesmateEntity {
      * @param $status string Open, Won or Lost
      * @throws InvalidFormatException
      */
-    public function setStatus($status) {
-        if(!in_array($status, ['Open', 'Won', "Lost"]))
+    public function setStatus($status)
+    {
+        if (!in_array($status, ['Open', 'Won', "Lost"])) {
             throw new InvalidFormatException('Deal status must be Open, Won or Lost according to Salesmate API spec.');
+        }
 
         $this->data['status'] = $status;
     }
 
-    public function getTags() {
+    /**
+     * @return string
+     */
+    public function getTags()
+    {
         return $this->data['tags'];
     }
-    
-    public function getFollowers() {
+
+    /**
+     * @return string
+     */
+    public function getFollowers()
+    {
         return $this->data['followers'];
     }
 }
