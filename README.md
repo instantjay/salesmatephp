@@ -1,6 +1,6 @@
 # Salesmate.io PHP Wrapper
 
-PHP5 and PHP7 compatible Salesmate.io PHP wrapper, to sync sales leads and activities with your Salesmate.io account.
+Unofficial Salesmate.io PHP API wrapper, to sync sales leads and activities with your Salesmate.io account.
 
 # Requirements
 
@@ -17,6 +17,5 @@ PHP5 and PHP7 compatible Salesmate.io PHP wrapper, to sync sales leads and activ
 
 - Run `composer install`
 - Make sure you have Docker installed and running.
-- Run `docker-compose up` to build and execute Dockerized environments and test our API wrapper on
-    - PHP5
+- Run `docker-compose up` to build and execute Dockerized environments and test the API wrapper on
     - PHP7
